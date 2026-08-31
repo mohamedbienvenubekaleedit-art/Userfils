@@ -2,13 +2,27 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <title>ANTIJUDA iOS</title>
 
+<link rel="apple-touch-icon"
+href="https://i.postimg.cc/Y9GQSM32/5002f61b-dc82-45d3-af07-eff5eb510c04.jpg">
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ANTIJUDA iOS">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
+
 :root{
-  --p:#ff3b3b;
+  --red:#ff3b3b;
+  --red2:#cc0000;
   --bg:#000;
   --card:rgba(20,5,5,.95);
 }
@@ -19,22 +33,21 @@
 }
 
 body{
-  background:var(--bg);
-  color:#fff;
-  font-family:-apple-system,sans-serif;
   margin:0;
+  width:100vw;
+  height:100vh;
+  overflow:hidden;
+  background:#000;
+  color:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   display:flex;
   align-items:center;
   justify-content:center;
-  height:100vh;
-  width:100vw;
-  overflow:hidden;
 }
 
 canvas{
   position:fixed;
-  top:0;
-  left:0;
+  inset:0;
   width:100vw!important;
   height:100vh!important;
   z-index:1;
@@ -42,76 +55,165 @@ canvas{
 
 .container{
   width:320px;
-  background:var(--card);
-  border-radius:28px;
+  max-width:calc(100vw - 30px);
   padding:30px 22px;
-  border:1px solid rgba(255,59,59,.3);
-  z-index:10;
   position:relative;
+  z-index:10;
+  text-align:center;
+
+  background:var(--card);
+
+  border:1px solid rgba(255,59,59,.3);
+  border-radius:28px;
+
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
-  text-align:center;
-  box-shadow:0 0 40px rgba(255,0,0,.15);
+
+  box-shadow:
+    0 0 40px rgba(255,0,0,.15);
 }
+
+/* LOGO */
 
 .logo{
-  width:82px;
-  height:82px;
+  width:88px;
+  height:88px;
+
   object-fit:cover;
+
   border-radius:50%;
-  border:2px solid rgba(255,59,59,.7);
-  box-shadow:0 0 25px rgba(255,0,0,.35);
-  margin-bottom:15px;
+
+  border:2px solid rgba(255,59,59,.8);
+
+  box-shadow:
+    0 0 25px rgba(255,0,0,.4);
+
+  margin-bottom:16px;
+
+  animation:pulseLogo 2s infinite;
 }
 
-@keyframes spin{
-  to{transform:rotate(360deg);}
+@keyframes pulseLogo{
+
+  0%,100%{
+    transform:scale(1);
+    opacity:.9;
+  }
+
+  50%{
+    transform:scale(1.05);
+    opacity:1;
+  }
 }
 
-.spinner{
-  display:inline-block;
-  width:14px;
-  height:14px;
-  border:2px solid rgba(255,255,255,.2);
-  border-top-color:#fff;
-  border-radius:50%;
-  animation:spin .8s linear infinite;
-  margin-right:10px;
-  vertical-align:middle;
-}
+/* TITRES */
 
-#lock-screen h2{
-  color:#fff;
+.title{
+  font-size:24px;
   font-weight:900;
   letter-spacing:2px;
-  margin-bottom:30px;
   text-transform:uppercase;
-  font-size:24px;
-  text-shadow:0 0 10px rgba(255,0,0,.5);
+
+  text-shadow:
+    0 0 12px rgba(255,0,0,.5);
+
+  margin:5px 0 8px;
 }
 
 .subtitle{
-  font-size:10px;
   color:#cc8888;
-  margin-top:-20px;
-  margin-bottom:25px;
+  font-size:10px;
   font-weight:700;
   letter-spacing:1px;
   text-transform:uppercase;
+
+  margin:0 0 25px;
 }
 
-.btn-action{
-  background:linear-gradient(135deg,#cc0000,#ff1a1a);
-  color:#fff;
-  border:none;
+/* LOGIN */
+
+.login-box{
   width:100%;
-  padding:18px;
+}
+
+.input-wrapper{
+  position:relative;
+  margin-bottom:14px;
+}
+
+.input-wrapper i{
+  position:absolute;
+  left:16px;
+  top:50%;
+  transform:translateY(-50%);
+
+  color:#ff4d4d;
+}
+
+#password{
+  width:100%;
+  height:54px;
+
+  padding:0 16px 0 46px;
+
+  border-radius:17px;
+
+  border:1px solid rgba(255,59,59,.3);
+
+  outline:none;
+
+  background:rgba(40,10,10,.75);
+
+  color:#fff;
+
+  font-size:14px;
+  font-weight:700;
+
+  text-align:center;
+
+  letter-spacing:1px;
+}
+
+#password:focus{
+  border-color:#ff3b3b;
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.2);
+}
+
+#password::placeholder{
+  color:#8e5f5f;
+}
+
+/* BOUTONS */
+
+.btn-action{
+  width:100%;
+
+  padding:17px;
+
+  border:none;
   border-radius:18px;
-  font-weight:900;
-  cursor:pointer;
+
+  background:
+    linear-gradient(
+      135deg,
+      #cc0000,
+      #ff1a1a
+    );
+
+  color:#fff;
+
   font-size:13px;
+  font-weight:900;
+
   text-transform:uppercase;
-  box-shadow:0 8px 20px rgba(255,0,0,.3);
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 20px rgba(255,0,0,.3);
+
   transition:.3s;
 }
 
@@ -119,56 +221,141 @@ canvas{
   transform:scale(.96);
 }
 
-.simple-title{
-  font-size:18px;
-  font-weight:900;
-  color:#fff;
-  margin-bottom:18px;
-  display:block;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  text-shadow:0 0 10px rgba(255,0,0,.5);
+.btn-action i{
+  margin-right:8px;
 }
 
-.tabs{
-  display:flex;
-  background:rgba(255,0,0,.1);
-  padding:5px;
-  border-radius:16px;
-  margin-bottom:18px;
-  gap:6px;
-  border:1px solid rgba(255,59,59,.2);
+/* MESSAGE LOGIN */
+
+.login-message{
+  min-height:18px;
+
+  margin-top:14px;
+
+  font-size:11px;
+  font-weight:700;
+
+  color:#cc8888;
 }
 
-.tab-btn{
-  flex:1;
-  padding:12px 0;
-  border:none;
-  background:transparent;
-  color:#aaa;
-  cursor:pointer;
-  border-radius:12px;
-  transition:.3s;
-  font-weight:800;
-  font-size:12px;
-  text-transform:uppercase;
+/* SPINNER */
+
+.spinner{
+  display:inline-block;
+
+  width:14px;
+  height:14px;
+
+  border:2px solid rgba(255,255,255,.25);
+
+  border-top-color:#fff;
+
+  border-radius:50%;
+
+  animation:spin .8s linear infinite;
+
+  margin-right:8px;
+
+  vertical-align:middle;
 }
 
-.tab-btn.active{
-  background:linear-gradient(135deg,#cc0000,#ff1a1a);
-  color:#fff;
-  box-shadow:0 4px 15px rgba(255,0,0,.4);
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
 }
+
+/* MAIN */
 
 #main-panel{
   display:none;
 }
 
+.simple-title{
+  display:block;
+
+  font-size:18px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  margin-bottom:18px;
+
+  text-transform:uppercase;
+
+  text-shadow:
+    0 0 10px rgba(255,0,0,.5);
+}
+
+/* TABS */
+
+.tabs{
+  display:flex;
+
+  gap:6px;
+
+  padding:5px;
+
+  margin-bottom:18px;
+
+  background:rgba(255,0,0,.1);
+
+  border:1px solid rgba(255,59,59,.2);
+
+  border-radius:16px;
+}
+
+.tab-btn{
+  flex:1;
+
+  padding:12px 0;
+
+  border:none;
+  border-radius:12px;
+
+  background:transparent;
+
+  color:#aaa;
+
+  font-size:12px;
+  font-weight:800;
+
+  text-transform:uppercase;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.tab-btn i{
+  margin-right:5px;
+}
+
+.tab-btn.active{
+  color:#fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #cc0000,
+      #ff1a1a
+    );
+
+  box-shadow:
+    0 4px 15px rgba(255,0,0,.4);
+}
+
+/* CONTENT */
+
 .tab-content{
   display:none;
+
   height:160px;
+
   overflow-y:auto;
+
   margin-bottom:15px;
+
   padding-right:5px;
 }
 
@@ -176,15 +363,26 @@ canvas{
   display:block;
 }
 
+/* OPTIONS */
+
 .opt-item{
-  background:rgba(40,10,10,.6);
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:10px;
   display:flex;
+
   align-items:center;
   justify-content:space-between;
-  border:1px solid rgba(255,59,59,.2);
+
+  padding:16px;
+
+  margin-bottom:10px;
+
+  background:rgba(40,10,10,.6);
+
+  border:
+    1px solid
+    rgba(255,59,59,.2);
+
+  border-radius:16px;
+
   transition:.3s;
 }
 
@@ -193,44 +391,65 @@ canvas{
 }
 
 .opt-info b{
-  font-size:14px;
   display:block;
+
   color:#fff;
+
+  font-size:14px;
+
   text-transform:uppercase;
 }
 
 .opt-info p{
-  font-size:10px;
-  color:#cc8888;
   margin:3px 0 0;
-  text-transform:lowercase;
+
+  color:#cc8888;
+
+  font-size:10px;
 }
+
+/* SWITCH */
 
 .switch-bg{
   width:44px;
   height:24px;
-  background:#3a1515;
-  border-radius:12px;
+
   position:relative;
+
+  flex-shrink:0;
+
+  border-radius:12px;
+
+  background:#3a1515;
+
   transition:.3s;
 }
 
 .switch-bg::after{
-  content:'';
+  content:"";
+
   position:absolute;
+
   width:18px;
   height:18px;
-  background:#aaa;
-  border-radius:50%;
-  top:3px;
+
   left:4px;
+  top:3px;
+
+  border-radius:50%;
+
+  background:#aaa;
+
   transition:.3s;
 }
 
 .opt-item.active{
   border-color:#ff3b3b;
+
   background:rgba(60,10,10,.9);
-  box-shadow:0 0 15px rgba(255,0,0,.2);
+
+  box-shadow:
+    0 0 15px rgba(255,0,0,.2);
 }
 
 .opt-item.active .switch-bg{
@@ -238,49 +457,37 @@ canvas{
 }
 
 .opt-item.active .switch-bg::after{
-  background:#fff;
   left:22px;
+  background:#fff;
 }
 
-#status-toast{
-  position:fixed;
-  top:10%;
-  left:50%;
-  transform:translateX(-50%);
-  background:linear-gradient(135deg,#cc0000,#ff1a1a);
-  color:#fff;
-  padding:10px 25px;
-  border-radius:30px;
-  font-size:13px;
-  font-weight:700;
-  z-index:100;
-  display:none;
-  box-shadow:0 0 20px rgba(255,0,0,.5);
-  white-space:nowrap;
-}
-
-.footer{
-  font-size:11px;
-  color:#888;
-  margin-top:18px;
-  font-weight:800;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
+/* INFO */
 
 .info-box{
-  text-align:left;
-  background:rgba(40,10,10,.6);
   padding:18px;
+
+  text-align:left;
+
+  background:rgba(40,10,10,.6);
+
+  border:
+    1px solid
+    rgba(255,59,59,.2);
+
   border-radius:18px;
-  border:1px solid rgba(255,59,59,.2);
+
   font-size:12px;
 }
 
 .info-line{
   margin:0 0 12px;
-  border-bottom:1px solid rgba(255,59,59,.2);
+
   padding-bottom:8px;
+
+  border-bottom:
+    1px solid
+    rgba(255,59,59,.2);
+
   text-transform:uppercase;
 }
 
@@ -293,6 +500,58 @@ canvas{
   float:right;
   color:#ff4d4d;
 }
+
+/* TOAST */
+
+#status-toast{
+  display:none;
+
+  position:fixed;
+
+  top:10%;
+  left:50%;
+
+  transform:translateX(-50%);
+
+  z-index:100;
+
+  padding:10px 25px;
+
+  white-space:nowrap;
+
+  color:#fff;
+
+  font-size:13px;
+  font-weight:700;
+
+  border-radius:30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #cc0000,
+      #ff1a1a
+    );
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,.5);
+}
+
+/* FOOTER */
+
+.footer{
+  margin-top:18px;
+
+  color:#888;
+
+  font-size:11px;
+  font-weight:800;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+}
+
 </style>
 </head>
 
@@ -302,121 +561,217 @@ canvas{
 
 <div id="status-toast"></div>
 
+
 <div class="container">
 
-<div id="lock-screen">
+<!-- =========================
+     LOGIN
+========================= -->
 
-<img
-class="logo"
-src="https://i.postimg.cc/4d0pJz1j/8f4199dd-a211-4077-8132-1af991b36646.jpg"
-alt="ANTIJUDA iOS">
+<div id="login-screen">
 
-<h2>ANTIJUDA iOS</h2>
+  <img
+    class="logo"
+    src="https://i.postimg.cc/Y9GQSM32/5002f61b-dc82-45d3-af07-eff5eb510c04.jpg"
+    alt="ANTIJUDA iOS">
 
-<p class="subtitle">
-OPTIMIZADOR iOS
-</p>
+  <div class="title">
+    ANTIJUDA iOS
+  </div>
 
-<button class="btn-action" onclick="liberar()">
-ACTIVAR LICENCIA
-</button>
+  <div class="subtitle">
+    ACCESO PROTEGIDO
+  </div>
+
+  <div class="login-box">
+
+    <div class="input-wrapper">
+
+      <i class="fa-solid fa-lock"></i>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="INTRODUCE TU CÓDIGO"
+        autocomplete="off">
+
+    </div>
+
+    <button
+      class="btn-action"
+      onclick="verificarCodigo()">
+
+      <i class="fa-solid fa-key"></i>
+      ACCEDER
+
+    </button>
+
+    <div
+      id="login-message"
+      class="login-message">
+    </div>
+
+  </div>
+
+  <div class="footer">
+    ANTIJUDA iOS
+  </div>
 
 </div>
 
+
+<!-- =========================
+     MENU
+========================= -->
 
 <div id="main-panel">
 
-<span class="simple-title">
-ANTIJUDA iOS
-</span>
-
-<div class="tabs">
-
-<button
-class="tab-btn active"
-id="btn-f"
-onclick="showTab('funciones')">
-FUNCIONES
-</button>
-
-<button
-class="tab-btn"
-id="btn-i"
-onclick="showTab('info')">
-SOBRE
-</button>
-
-</div>
+  <span class="simple-title">
+    <i class="fa-brands fa-apple"></i>
+    ANTIJUDA iOS
+  </span>
 
 
-<div id="funciones" class="tab-content active">
+  <div class="tabs">
 
-<div
-class="opt-item"
-onclick="toggleOption(this,'Headtrick')">
+    <button
+      class="tab-btn active"
+      id="btn-f"
+      onclick="showTab('funciones')">
 
-<div class="opt-info">
-<b>HEADTRICK 95% HS</b>
-<p>precisión mejorada HS</p>
-</div>
+      <i class="fa-solid fa-sliders"></i>
+      FUNCIONES
 
-<div class="switch-bg"></div>
+    </button>
 
-</div>
+    <button
+      class="tab-btn"
+      id="btn-i"
+      onclick="showTab('info')">
 
+      <i class="fa-solid fa-circle-info"></i>
+      SOBRE
 
-<div
-class="opt-item"
-onclick="toggleOption(this,'Optimización')">
+    </button>
 
-<div class="opt-info">
-<b>OPTIMIZACIÓN</b>
-<p>rendimiento del sistema</p>
-</div>
-
-<div class="switch-bg"></div>
-
-</div>
-
-</div>
+  </div>
 
 
-<div id="info" class="tab-content">
+  <!-- FUNCIONES -->
 
-<div class="info-box">
+  <div
+    id="funciones"
+    class="tab-content active">
 
-<p class="info-line">
-VERSIÓN:
-<span class="value">1.0.0</span>
-</p>
+    <div
+      class="opt-item"
+      onclick="toggleOption(this,'HEADTRICK')">
 
-<p class="info-line">
-ESTADO:
-<span class="value">PROTEGIDO</span>
-</p>
+      <div class="opt-info">
 
-<p class="info-line">
-CREADOR:
-<span class="value">ANTIJUDA</span>
-</p>
+        <b>
+          <i class="fa-solid fa-crosshairs"
+             style="color:#ff4d4d;margin-right:8px;"></i>
+          HEADTRICK 95% HS
+        </b>
 
-</div>
+        <p>
+          precisión mejorada HS
+        </p>
 
-</div>
+      </div>
+
+      <div class="switch-bg"></div>
+
+    </div>
 
 
-<button
-class="btn-action"
-id="btnInjetar"
-onclick="injetarComEfeito()">
+    <div
+      class="opt-item"
+      onclick="toggleOption(this,'OPTIMIZACIÓN')">
 
-ACTIVAR HEADTRACKING
+      <div class="opt-info">
 
-</button>
+        <b>
+          <i class="fa-solid fa-gauge-high"
+             style="color:#ff4d4d;margin-right:8px;"></i>
+          OPTIMIZACIÓN
+        </b>
 
-<div class="footer">
-ANTIJUDA iOS
-</div>
+        <p>
+          rendimiento del sistema
+        </p>
+
+      </div>
+
+      <div class="switch-bg"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- SOBRE -->
+
+  <div
+    id="info"
+    class="tab-content">
+
+    <div class="info-box">
+
+      <p class="info-line">
+
+        <i class="fa-solid fa-code-branch"></i>
+        VERSIÓN:
+
+        <span class="value">
+          1.0.0
+        </span>
+
+      </p>
+
+      <p class="info-line">
+
+        <i class="fa-solid fa-shield-halved"></i>
+        ESTADO:
+
+        <span class="value">
+          PROTEGIDO
+        </span>
+
+      </p>
+
+      <p class="info-line">
+
+        <i class="fa-solid fa-user"></i>
+        CREADOR:
+
+        <span class="value">
+          ANTIJUDA
+        </span>
+
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <button
+    class="btn-action"
+    id="btnInjetar"
+    onclick="activarDemo()">
+
+    <i class="fa-solid fa-bolt"></i>
+    ACTIVAR HEADTRACKING
+
+  </button>
+
+
+  <div class="footer">
+    <i class="fa-brands fa-apple"></i>
+    ANTIJUDA iOS
+  </div>
 
 </div>
 
@@ -425,44 +780,360 @@ ANTIJUDA iOS
 
 <script>
 
-const canvas=document.getElementById("particles");
-const ctx=canvas.getContext("2d");
+/* =========================
+   CÓDIGOS DE ACCESO
+========================= */
 
-let pts=[];
+const codigosValidos = [
+
+  "ANTI-7K29",
+  "IOS-48XQ",
+  "JUDA-93LM",
+  "XITS-61RP"
+
+];
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function verificarCodigo(){
+
+  const input =
+    document.getElementById("password");
+
+  const message =
+    document.getElementById("login-message");
+
+  const btn =
+    document.querySelector(
+      "#login-screen .btn-action"
+    );
+
+  const codigo =
+    input.value.trim().toUpperCase();
+
+
+  if(!codigo){
+
+    message.innerHTML =
+      "⚠️ INTRODUCE UN CÓDIGO";
+
+    return;
+  }
+
+
+  btn.innerHTML =
+    '<span class="spinner"></span> VERIFICANDO...';
+
+  btn.disabled=true;
+
+
+  setTimeout(()=>{
+
+    if(codigosValidos.includes(codigo)){
+
+      message.innerHTML =
+        "✓ ACCESO AUTORIZADO";
+
+      message.style.color =
+        "#ff4d4d";
+
+
+      setTimeout(()=>{
+
+        document
+          .getElementById("login-screen")
+          .style.display="none";
+
+        document
+          .getElementById("main-panel")
+          .style.display="block";
+
+      },700);
+
+    }else{
+
+      message.innerHTML =
+        "✕ CÓDIGO INCORRECTO";
+
+      message.style.color =
+        "#ff5555";
+
+      btn.innerHTML =
+        '<i class="fa-solid fa-key"></i> ACCEDER';
+
+      btn.disabled=false;
+
+    }
+
+  },1000);
+
+}
+
+
+/* ENTER POUR VALIDER */
+
+document
+  .getElementById("password")
+  .addEventListener(
+    "keydown",
+    function(event){
+
+      if(event.key==="Enter"){
+        verificarCodigo();
+      }
+
+    }
+  );
+
+
+/* =========================
+   TABS
+========================= */
+
+function showTab(tab){
+
+  document
+    .getElementById("funciones")
+    .classList.toggle(
+      "active",
+      tab==="funciones"
+    );
+
+  document
+    .getElementById("info")
+    .classList.toggle(
+      "active",
+      tab==="info"
+    );
+
+  document
+    .getElementById("btn-f")
+    .classList.toggle(
+      "active",
+      tab==="funciones"
+    );
+
+  document
+    .getElementById("btn-i")
+    .classList.toggle(
+      "active",
+      tab==="info"
+    );
+
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
+
+async function toggleOption(
+  el,
+  nombre
+){
+
+  const toast =
+    document.getElementById(
+      "status-toast"
+    );
+
+
+  if(!el.classList.contains("active")){
+
+    toast.innerHTML =
+      '<span class="spinner"></span> APLICANDO...';
+
+    toast.style.display =
+      "block";
+
+
+    await new Promise(
+      resolve =>
+        setTimeout(
+          resolve,
+          1200
+        )
+    );
+
+
+    el.classList.add("active");
+
+    toast.innerHTML =
+      '<i class="fa-solid fa-circle-check"></i> APLICADO CON ÉXITO';
+
+  }else{
+
+    el.classList.remove("active");
+
+    toast.innerHTML =
+      '<i class="fa-solid fa-circle-xmark"></i> '+
+      nombre+
+      ' OFF';
+
+    toast.style.display =
+      "block";
+  }
+
+
+  setTimeout(()=>{
+
+    toast.style.display =
+      "none";
+
+  },1500);
+
+}
+
+
+/* =========================
+   BOUTON PRINCIPAL
+========================= */
+
+async function activarDemo(){
+
+  const toast =
+    document.getElementById(
+      "status-toast"
+    );
+
+  const btn =
+    document.getElementById(
+      "btnInjetar"
+    );
+
+
+  toast.innerHTML =
+    '<span class="spinner"></span> ACTIVANDO...';
+
+  toast.style.display =
+    "block";
+
+  btn.style.opacity =
+    ".5";
+
+  btn.style.pointerEvents =
+    "none";
+
+
+  await new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        2000
+      )
+  );
+
+
+  toast.innerHTML =
+    '<i class="fa-solid fa-circle-check"></i> ACTIVACIÓN COMPLETADA';
+
+
+  btn.innerHTML =
+    '<i class="fa-solid fa-check"></i> HEADTRACKING ACTIVADO';
+
+
+  btn.style.opacity =
+    "1";
+
+  btn.style.pointerEvents =
+    "auto";
+
+
+  setTimeout(()=>{
+
+    toast.style.display =
+      "none";
+
+  },1500);
+
+}
+
+
+/* =========================
+   PARTICULAS
+========================= */
+
+const canvas =
+  document.getElementById(
+    "particles"
+  );
+
+const ctx =
+  canvas.getContext("2d");
+
+let particles=[];
+
 
 function resize(){
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
+
+  canvas.width =
+    window.innerWidth;
+
+  canvas.height =
+    window.innerHeight;
+
 }
+
 
 class Particle{
 
   constructor(){
 
-    this.x=Math.random()*canvas.width;
-    this.y=Math.random()*canvas.height;
+    this.x =
+      Math.random() *
+      canvas.width;
 
-    this.vx=(Math.random()-.5)*.3;
-    this.vy=(Math.random()-.5)*.3;
+    this.y =
+      Math.random() *
+      canvas.height;
 
-    this.size=Math.random()*1.5;
+    this.vx =
+      (Math.random()-.5)*.3;
+
+    this.vy =
+      (Math.random()-.5)*.3;
+
+    this.size =
+      Math.random()*1.5;
+
   }
+
 
   update(){
 
-    this.x+=this.vx;
-    this.y+=this.vy;
+    this.x += this.vx;
+    this.y += this.vy;
 
-    if(this.x<0||this.x>canvas.width)
-      this.vx*=-1;
 
-    if(this.y<0||this.y>canvas.height)
-      this.vy*=-1;
+    if(
+      this.x<0 ||
+      this.x>canvas.width
+    ){
+
+      this.vx *= -1;
+
+    }
+
+
+    if(
+      this.y<0 ||
+      this.y>canvas.height
+    ){
+
+      this.vy *= -1;
+
+    }
+
   }
+
 
   draw(){
 
-    ctx.fillStyle="rgba(255,59,59,.3)";
+    ctx.fillStyle =
+      "rgba(255,59,59,.3)";
 
     ctx.beginPath();
 
@@ -475,16 +1146,30 @@ class Particle{
     );
 
     ctx.fill();
+
   }
+
 }
 
-function init(){
 
-  pts=[];
+function initParticles(){
 
-  for(let i=0;i<50;i++)
-    pts.push(new Particle());
+  particles=[];
+
+  for(
+    let i=0;
+    i<50;
+    i++
+  ){
+
+    particles.push(
+      new Particle()
+    );
+
+  }
+
 }
+
 
 function animate(){
 
@@ -495,21 +1180,25 @@ function animate(){
     canvas.height
   );
 
-  pts.forEach(p=>{
+
+  particles.forEach(p=>{
 
     p.update();
     p.draw();
 
-    pts.forEach(p2=>{
 
-      let dist=Math.hypot(
-        p.x-p2.x,
-        p.y-p2.y
-      );
+    particles.forEach(p2=>{
+
+      const dist =
+        Math.hypot(
+          p.x-p2.x,
+          p.y-p2.y
+        );
+
 
       if(dist<100){
 
-        ctx.strokeStyle=
+        ctx.strokeStyle =
           "rgba(255,59,59,"+
           ((1-dist/100)*.15)+")";
 
@@ -517,180 +1206,40 @@ function animate(){
 
         ctx.beginPath();
 
-        ctx.moveTo(p.x,p.y);
-        ctx.lineTo(p2.x,p2.y);
+        ctx.moveTo(
+          p.x,
+          p.y
+        );
+
+        ctx.lineTo(
+          p2.x,
+          p2.y
+        );
 
         ctx.stroke();
+
       }
 
     });
+
   });
 
-  requestAnimationFrame(animate);
+
+  requestAnimationFrame(
+    animate
+  );
+
 }
+
 
 resize();
-init();
+initParticles();
 animate();
 
-window.addEventListener("resize",resize);
-
-
-function showTab(tab){
-
-  document
-  .getElementById("funciones")
-  .classList.toggle(
-    "active",
-    tab==="funciones"
-  );
-
-  document
-  .getElementById("info")
-  .classList.toggle(
-    "active",
-    tab==="info"
-  );
-
-  document
-  .getElementById("btn-f")
-  .classList.toggle(
-    "active",
-    tab==="funciones"
-  );
-
-  document
-  .getElementById("btn-i")
-  .classList.toggle(
-    "active",
-    tab==="info"
-  );
-}
-
-
-function liberar(){
-
-  const btn=
-    document.querySelector(
-      "#lock-screen .btn-action"
-    );
-
-  btn.innerHTML=
-    '<span class="spinner"></span> ACTIVANDO...';
-
-  btn.disabled=true;
-
-  /*
-   * Conserva Safari.open() para Scriptable.
-   * No hay enlace de YouTube.
-   */
-
-  try{
-    Safari.open("sub://");
-  }catch(e){}
-
-  setTimeout(()=>{
-
-    document
-    .getElementById("lock-screen")
-    .style.display="none";
-
-    document
-    .getElementById("main-panel")
-    .style.display="block";
-
-  },1000);
-}
-
-
-async function toggleOption(el,nome){
-
-  const toast=
-    document.getElementById(
-      "status-toast"
-    );
-
-  if(!el.classList.contains("active")){
-
-    toast.innerHTML=
-      '<span class="spinner"></span> APLICANDO...';
-
-    toast.style.display="block";
-
-    await new Promise(
-      resolve=>setTimeout(resolve,1500)
-    );
-
-    el.classList.add("active");
-
-    toast.innerHTML=
-      "✓ APLICADO CON ÉXITO";
-
-  }else{
-
-    el.classList.remove("active");
-
-    toast.innerText=
-      nome+" OFF";
-
-    toast.style.display="block";
-  }
-
-  setTimeout(()=>{
-
-    toast.style.display="none";
-
-  },1500);
-}
-
-
-async function injetarComEfeito(){
-
-  const toast=
-    document.getElementById(
-      "status-toast"
-    );
-
-  const btn=
-    document.getElementById(
-      "btnInjetar"
-    );
-
-  toast.innerHTML=
-    '<span class="spinner"></span> INYECTANDO...';
-
-  toast.style.display="block";
-
-  btn.style.opacity=".5";
-  btn.style.pointerEvents="none";
-
-  await new Promise(
-    resolve=>setTimeout(resolve,2500)
-  );
-
-  toast.innerHTML=
-    "✓ INYECCIÓN COMPLETADA";
-
-  btn.innerText=
-    "HEADTRACKING ACTIVADO";
-
-  btn.style.opacity="1";
-
-  setTimeout(()=>{
-
-    toast.style.display="none";
-
-    /*
-     * Ouverture du jeu via Safari
-     * dans Scriptable.
-     */
-
-    try{
-      Safari.open("freefire://");
-    }catch(e){}
-
-  },1500);
-}
+window.addEventListener(
+  "resize",
+  resize
+);
 
 </script>
 
