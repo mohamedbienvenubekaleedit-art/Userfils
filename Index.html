@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<title>ANTIJUDA iOS</title>
+
+<style>
+:root{
+  --p:#ff3b3b;
+  --bg:#000;
+  --card:rgba(20,5,5,.95);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  background:var(--bg);
+  color:#fff;
+  font-family:-apple-system,sans-serif;
+  margin:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  width:100vw;
+  overflow:hidden;
+}
+
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100vw!important;
+  height:100vh!important;
+  z-index:1;
+}
+
+.container{
+  width:320px;
+  background:var(--card);
+  border-radius:28px;
+  padding:30px 22px;
+  border:1px solid rgba(255,59,59,.3);
+  z-index:10;
+  position:relative;
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  text-align:center;
+  box-shadow:0 0 40px rgba(255,0,0,.15);
+}
+
+.logo{
+  width:82px;
+  height:82px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid rgba(255,59,59,.7);
+  box-shadow:0 0 25px rgba(255,0,0,.35);
+  margin-bottom:15px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
+.spinner{
+  display:inline-block;
+  width:14px;
+  height:14px;
+  border:2px solid rgba(255,255,255,.2);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  margin-right:10px;
+  vertical-align:middle;
+}
+
+#lock-screen h2{
+  color:#fff;
+  font-weight:900;
+  letter-spacing:2px;
+  margin-bottom:30px;
+  text-transform:uppercase;
+  font-size:24px;
+  text-shadow:0 0 10px rgba(255,0,0,.5);
+}
+
+.subtitle{
+  font-size:10px;
+  color:#cc8888;
+  margin-top:-20px;
+  margin-bottom:25px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.btn-action{
+  background:linear-gradient(135deg,#cc0000,#ff1a1a);
+  color:#fff;
+  border:none;
+  width:100%;
+  padding:18px;
+  border-radius:18px;
+  font-weight:900;
+  cursor:pointer;
+  font-size:13px;
+  text-transform:uppercase;
+  box-shadow:0 8px 20px rgba(255,0,0,.3);
+  transition:.3s;
+}
+
+.btn-action:active{
+  transform:scale(.96);
+}
+
+.simple-title{
+  font-size:18px;
+  font-weight:900;
+  color:#fff;
+  margin-bottom:18px;
+  display:block;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  text-shadow:0 0 10px rgba(255,0,0,.5);
+}
+
+.tabs{
+  display:flex;
+  background:rgba(255,0,0,.1);
+  padding:5px;
+  border-radius:16px;
+  margin-bottom:18px;
+  gap:6px;
+  border:1px solid rgba(255,59,59,.2);
+}
+
+.tab-btn{
+  flex:1;
+  padding:12px 0;
+  border:none;
+  background:transparent;
+  color:#aaa;
+  cursor:pointer;
+  border-radius:12px;
+  transition:.3s;
+  font-weight:800;
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.tab-btn.active{
+  background:linear-gradient(135deg,#cc0000,#ff1a1a);
+  color:#fff;
+  box-shadow:0 4px 15px rgba(255,0,0,.4);
+}
+
+#main-panel{
+  display:none;
+}
+
+.tab-content{
+  display:none;
+  height:160px;
+  overflow-y:auto;
+  margin-bottom:15px;
+  padding-right:5px;
+}
+
+.tab-content.active{
+  display:block;
+}
+
+.opt-item{
+  background:rgba(40,10,10,.6);
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border:1px solid rgba(255,59,59,.2);
+  transition:.3s;
+}
+
+.opt-info{
+  text-align:left;
+}
+
+.opt-info b{
+  font-size:14px;
+  display:block;
+  color:#fff;
+  text-transform:uppercase;
+}
+
+.opt-info p{
+  font-size:10px;
+  color:#cc8888;
+  margin:3px 0 0;
+  text-transform:lowercase;
+}
+
+.switch-bg{
+  width:44px;
+  height:24px;
+  background:#3a1515;
+  border-radius:12px;
+  position:relative;
+  transition:.3s;
+}
+
+.switch-bg::after{
+  content:'';
+  position:absolute;
+  width:18px;
+  height:18px;
+  background:#aaa;
+  border-radius:50%;
+  top:3px;
+  left:4px;
+  transition:.3s;
+}
+
+.opt-item.active{
+  border-color:#ff3b3b;
+  background:rgba(60,10,10,.9);
+  box-shadow:0 0 15px rgba(255,0,0,.2);
+}
+
+.opt-item.active .switch-bg{
+  background:#ff1a1a;
+}
+
+.opt-item.active .switch-bg::after{
+  background:#fff;
+  left:22px;
+}
+
+#status-toast{
+  position:fixed;
+  top:10%;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,#cc0000,#ff1a1a);
+  color:#fff;
+  padding:10px 25px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:700;
+  z-index:100;
+  display:none;
+  box-shadow:0 0 20px rgba(255,0,0,.5);
+  white-space:nowrap;
+}
+
+.footer{
+  font-size:11px;
+  color:#888;
+  margin-top:18px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+.info-box{
+  text-align:left;
+  background:rgba(40,10,10,.6);
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,59,59,.2);
+  font-size:12px;
+}
+
+.info-line{
+  margin:0 0 12px;
+  border-bottom:1px solid rgba(255,59,59,.2);
+  padding-bottom:8px;
+  text-transform:uppercase;
+}
+
+.info-line:last-child{
+  margin-bottom:0;
+  border-bottom:0;
+}
+
+.value{
+  float:right;
+  color:#ff4d4d;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div id="status-toast"></div>
+
+<div class="container">
+
+<div id="lock-screen">
+
+<img
+class="logo"
+src="https://i.postimg.cc/4d0pJz1j/8f4199dd-a211-4077-8132-1af991b36646.jpg"
+alt="ANTIJUDA iOS">
+
+<h2>ANTIJUDA iOS</h2>
+
+<p class="subtitle">
+OPTIMIZADOR iOS
+</p>
+
+<button class="btn-action" onclick="liberar()">
+ACTIVAR LICENCIA
+</button>
+
+</div>
+
+
+<div id="main-panel">
+
+<span class="simple-title">
+ANTIJUDA iOS
+</span>
+
+<div class="tabs">
+
+<button
+class="tab-btn active"
+id="btn-f"
+onclick="showTab('funciones')">
+FUNCIONES
+</button>
+
+<button
+class="tab-btn"
+id="btn-i"
+onclick="showTab('info')">
+SOBRE
+</button>
+
+</div>
+
+
+<div id="funciones" class="tab-content active">
+
+<div
+class="opt-item"
+onclick="toggleOption(this,'Headtrick')">
+
+<div class="opt-info">
+<b>HEADTRICK 95% HS</b>
+<p>precisión mejorada HS</p>
+</div>
+
+<div class="switch-bg"></div>
+
+</div>
+
+
+<div
+class="opt-item"
+onclick="toggleOption(this,'Optimización')">
+
+<div class="opt-info">
+<b>OPTIMIZACIÓN</b>
+<p>rendimiento del sistema</p>
+</div>
+
+<div class="switch-bg"></div>
+
+</div>
+
+</div>
+
+
+<div id="info" class="tab-content">
+
+<div class="info-box">
+
+<p class="info-line">
+VERSIÓN:
+<span class="value">1.0.0</span>
+</p>
+
+<p class="info-line">
+ESTADO:
+<span class="value">PROTEGIDO</span>
+</p>
+
+<p class="info-line">
+CREADOR:
+<span class="value">ANTIJUDA</span>
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="btn-action"
+id="btnInjetar"
+onclick="injetarComEfeito()">
+
+ACTIVAR HEADTRACKING
+
+</button>
+
+<div class="footer">
+ANTIJUDA iOS
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+
+let pts=[];
+
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+
+class Particle{
+
+  constructor(){
+
+    this.x=Math.random()*canvas.width;
+    this.y=Math.random()*canvas.height;
+
+    this.vx=(Math.random()-.5)*.3;
+    this.vy=(Math.random()-.5)*.3;
+
+    this.size=Math.random()*1.5;
+  }
+
+  update(){
+
+    this.x+=this.vx;
+    this.y+=this.vy;
+
+    if(this.x<0||this.x>canvas.width)
+      this.vx*=-1;
+
+    if(this.y<0||this.y>canvas.height)
+      this.vy*=-1;
+  }
+
+  draw(){
+
+    ctx.fillStyle="rgba(255,59,59,.3)";
+
+    ctx.beginPath();
+
+    ctx.arc(
+      this.x,
+      this.y,
+      this.size,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fill();
+  }
+}
+
+function init(){
+
+  pts=[];
+
+  for(let i=0;i<50;i++)
+    pts.push(new Particle());
+}
+
+function animate(){
+
+  ctx.clearRect(
+    0,
+    0,
+    canvas.width,
+    canvas.height
+  );
+
+  pts.forEach(p=>{
+
+    p.update();
+    p.draw();
+
+    pts.forEach(p2=>{
+
+      let dist=Math.hypot(
+        p.x-p2.x,
+        p.y-p2.y
+      );
+
+      if(dist<100){
+
+        ctx.strokeStyle=
+          "rgba(255,59,59,"+
+          ((1-dist/100)*.15)+")";
+
+        ctx.lineWidth=.5;
+
+        ctx.beginPath();
+
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(p2.x,p2.y);
+
+        ctx.stroke();
+      }
+
+    });
+  });
+
+  requestAnimationFrame(animate);
+}
+
+resize();
+init();
+animate();
+
+window.addEventListener("resize",resize);
+
+
+function showTab(tab){
+
+  document
+  .getElementById("funciones")
+  .classList.toggle(
+    "active",
+    tab==="funciones"
+  );
+
+  document
+  .getElementById("info")
+  .classList.toggle(
+    "active",
+    tab==="info"
+  );
+
+  document
+  .getElementById("btn-f")
+  .classList.toggle(
+    "active",
+    tab==="funciones"
+  );
+
+  document
+  .getElementById("btn-i")
+  .classList.toggle(
+    "active",
+    tab==="info"
+  );
+}
+
+
+function liberar(){
+
+  const btn=
+    document.querySelector(
+      "#lock-screen .btn-action"
+    );
+
+  btn.innerHTML=
+    '<span class="spinner"></span> ACTIVANDO...';
+
+  btn.disabled=true;
+
+  /*
+   * Conserva Safari.open() para Scriptable.
+   * No hay enlace de YouTube.
+   */
+
+  try{
+    Safari.open("sub://");
+  }catch(e){}
+
+  setTimeout(()=>{
+
+    document
+    .getElementById("lock-screen")
+    .style.display="none";
+
+    document
+    .getElementById("main-panel")
+    .style.display="block";
+
+  },1000);
+}
+
+
+async function toggleOption(el,nome){
+
+  const toast=
+    document.getElementById(
+      "status-toast"
+    );
+
+  if(!el.classList.contains("active")){
+
+    toast.innerHTML=
+      '<span class="spinner"></span> APLICANDO...';
+
+    toast.style.display="block";
+
+    await new Promise(
+      resolve=>setTimeout(resolve,1500)
+    );
+
+    el.classList.add("active");
+
+    toast.innerHTML=
+      "✓ APLICADO CON ÉXITO";
+
+  }else{
+
+    el.classList.remove("active");
+
+    toast.innerText=
+      nome+" OFF";
+
+    toast.style.display="block";
+  }
+
+  setTimeout(()=>{
+
+    toast.style.display="none";
+
+  },1500);
+}
+
+
+async function injetarComEfeito(){
+
+  const toast=
+    document.getElementById(
+      "status-toast"
+    );
+
+  const btn=
+    document.getElementById(
+      "btnInjetar"
+    );
+
+  toast.innerHTML=
+    '<span class="spinner"></span> INYECTANDO...';
+
+  toast.style.display="block";
+
+  btn.style.opacity=".5";
+  btn.style.pointerEvents="none";
+
+  await new Promise(
+    resolve=>setTimeout(resolve,2500)
+  );
+
+  toast.innerHTML=
+    "✓ INYECCIÓN COMPLETADA";
+
+  btn.innerText=
+    "HEADTRACKING ACTIVADO";
+
+  btn.style.opacity="1";
+
+  setTimeout(()=>{
+
+    toast.style.display="none";
+
+    /*
+     * Ouverture du jeu via Safari
+     * dans Scriptable.
+     */
+
+    try{
+      Safari.open("freefire://");
+    }catch(e){}
+
+  },1500);
+}
+
+</script>
+
+</body>
+</html>
