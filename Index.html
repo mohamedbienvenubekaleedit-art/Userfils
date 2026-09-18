@@ -1,1247 +1,187 @@
 <!DOCTYPE html>
-<html lang="es">
+
+<html lang="fr">
+
 <head>
-<meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="UTF-8">
 
-<title>ANTIJUDA iOS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="apple-touch-icon"
-href="https://i.postimg.cc/Y9GQSM32/5002f61b-dc82-45d3-af07-eff5eb510c04.jpg">
+  <title>Mon WhatsApp Bot</title>
 
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="ANTIJUDA iOS">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    * {
 
-<style>
+      box-sizing: border-box;
 
-:root{
-  --red:#ff3b3b;
-  --red2:#cc0000;
-  --bg:#000;
-  --card:rgba(20,5,5,.95);
-}
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent;
-}
+      margin: 0;
 
-body{
-  margin:0;
-  width:100vw;
-  height:100vh;
-  overflow:hidden;
-  background:#000;
-  color:#fff;
-  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
+      padding: 0;
 
-canvas{
-  position:fixed;
-  inset:0;
-  width:100vw!important;
-  height:100vh!important;
-  z-index:1;
-}
+    }
 
-.container{
-  width:320px;
-  max-width:calc(100vw - 30px);
-  padding:30px 22px;
-  position:relative;
-  z-index:10;
-  text-align:center;
+    body {
 
-  background:var(--card);
+      font-family: Arial, sans-serif;
 
-  border:1px solid rgba(255,59,59,.3);
-  border-radius:28px;
+      background: #0f172a;
 
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
+      color: white;
 
-  box-shadow:
-    0 0 40px rgba(255,0,0,.15);
-}
+      min-height: 100vh;
 
-/* LOGO */
+      display: flex;
 
-.logo{
-  width:88px;
-  height:88px;
+      justify-content: center;
 
-  object-fit:cover;
+      align-items: center;
 
-  border-radius:50%;
+      padding: 20px;
 
-  border:2px solid rgba(255,59,59,.8);
+    }
 
-  box-shadow:
-    0 0 25px rgba(255,0,0,.4);
+    .container {
 
-  margin-bottom:16px;
+      background: #1e293b;
 
-  animation:pulseLogo 2s infinite;
-}
+      width: 100%;
 
-@keyframes pulseLogo{
+      max-width: 400px;
 
-  0%,100%{
-    transform:scale(1);
-    opacity:.9;
-  }
+      padding: 30px;
 
-  50%{
-    transform:scale(1.05);
-    opacity:1;
-  }
-}
+      border-radius: 18px;
 
-/* TITRES */
+      text-align: center;
 
-.title{
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-transform:uppercase;
+      box-shadow: 0 10px 30px #0005;
 
-  text-shadow:
-    0 0 12px rgba(255,0,0,.5);
+    }
 
-  margin:5px 0 8px;
-}
+    .logo {
 
-.subtitle{
-  color:#cc8888;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:1px;
-  text-transform:uppercase;
+      font-size: 55px;
 
-  margin:0 0 25px;
-}
+      margin-bottom: 15px;
 
-/* LOGIN */
+    }
 
-.login-box{
-  width:100%;
-}
+    h1 {
 
-.input-wrapper{
-  position:relative;
-  margin-bottom:14px;
-}
+      font-size: 27px;
 
-.input-wrapper i{
-  position:absolute;
-  left:16px;
-  top:50%;
-  transform:translateY(-50%);
+      margin-bottom: 12px;
 
-  color:#ff4d4d;
-}
+    }
 
-#password{
-  width:100%;
-  height:54px;
+    p {
 
-  padding:0 16px 0 46px;
+      color: #cbd5e1;
 
-  border-radius:17px;
+      line-height: 1.6;
 
-  border:1px solid rgba(255,59,59,.3);
+      margin-bottom: 20px;
 
-  outline:none;
+    }
 
-  background:rgba(40,10,10,.75);
+    .status {
 
-  color:#fff;
+      display: inline-block;
 
-  font-size:14px;
-  font-weight:700;
+      background: #064e3b;
 
-  text-align:center;
+      color: #6ee7b7;
 
-  letter-spacing:1px;
-}
+      padding: 10px 16px;
 
-#password:focus{
-  border-color:#ff3b3b;
+      border-radius: 20px;
 
-  box-shadow:
-    0 0 15px rgba(255,0,0,.2);
-}
+      font-size: 14px;
 
-#password::placeholder{
-  color:#8e5f5f;
-}
+      margin-bottom: 25px;
 
-/* BOUTONS */
+    }
 
-.btn-action{
-  width:100%;
+    button {
 
-  padding:17px;
+      width: 100%;
 
-  border:none;
-  border-radius:18px;
+      padding: 14px;
 
-  background:
-    linear-gradient(
-      135deg,
-      #cc0000,
-      #ff1a1a
-    );
+      background: #16a34a;
 
-  color:#fff;
+      color: white;
 
-  font-size:13px;
-  font-weight:900;
+      border: none;
 
-  text-transform:uppercase;
+      border-radius: 10px;
 
-  cursor:pointer;
+      font-size: 16px;
 
-  box-shadow:
-    0 8px 20px rgba(255,0,0,.3);
+      font-weight: bold;
 
-  transition:.3s;
-}
+      cursor: pointer;
 
-.btn-action:active{
-  transform:scale(.96);
-}
+    }
 
-.btn-action i{
-  margin-right:8px;
-}
+    button:hover {
 
-/* MESSAGE LOGIN */
+      background: #15803d;
 
-.login-message{
-  min-height:18px;
+    }
 
-  margin-top:14px;
+    footer {
 
-  font-size:11px;
-  font-weight:700;
+      margin-top: 25px;
 
-  color:#cc8888;
-}
+      font-size: 12px;
 
-/* SPINNER */
+      color: #94a3b8;
 
-.spinner{
-  display:inline-block;
+    }
 
-  width:14px;
-  height:14px;
+  </style>
 
-  border:2px solid rgba(255,255,255,.25);
-
-  border-top-color:#fff;
-
-  border-radius:50%;
-
-  animation:spin .8s linear infinite;
-
-  margin-right:8px;
-
-  vertical-align:middle;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
-}
-
-/* MAIN */
-
-#main-panel{
-  display:none;
-}
-
-.simple-title{
-  display:block;
-
-  font-size:18px;
-  font-weight:900;
-
-  letter-spacing:2px;
-
-  margin-bottom:18px;
-
-  text-transform:uppercase;
-
-  text-shadow:
-    0 0 10px rgba(255,0,0,.5);
-}
-
-/* TABS */
-
-.tabs{
-  display:flex;
-
-  gap:6px;
-
-  padding:5px;
-
-  margin-bottom:18px;
-
-  background:rgba(255,0,0,.1);
-
-  border:1px solid rgba(255,59,59,.2);
-
-  border-radius:16px;
-}
-
-.tab-btn{
-  flex:1;
-
-  padding:12px 0;
-
-  border:none;
-  border-radius:12px;
-
-  background:transparent;
-
-  color:#aaa;
-
-  font-size:12px;
-  font-weight:800;
-
-  text-transform:uppercase;
-
-  cursor:pointer;
-
-  transition:.3s;
-}
-
-.tab-btn i{
-  margin-right:5px;
-}
-
-.tab-btn.active{
-  color:#fff;
-
-  background:
-    linear-gradient(
-      135deg,
-      #cc0000,
-      #ff1a1a
-    );
-
-  box-shadow:
-    0 4px 15px rgba(255,0,0,.4);
-}
-
-/* CONTENT */
-
-.tab-content{
-  display:none;
-
-  height:160px;
-
-  overflow-y:auto;
-
-  margin-bottom:15px;
-
-  padding-right:5px;
-}
-
-.tab-content.active{
-  display:block;
-}
-
-/* OPTIONS */
-
-.opt-item{
-  display:flex;
-
-  align-items:center;
-  justify-content:space-between;
-
-  padding:16px;
-
-  margin-bottom:10px;
-
-  background:rgba(40,10,10,.6);
-
-  border:
-    1px solid
-    rgba(255,59,59,.2);
-
-  border-radius:16px;
-
-  transition:.3s;
-}
-
-.opt-info{
-  text-align:left;
-}
-
-.opt-info b{
-  display:block;
-
-  color:#fff;
-
-  font-size:14px;
-
-  text-transform:uppercase;
-}
-
-.opt-info p{
-  margin:3px 0 0;
-
-  color:#cc8888;
-
-  font-size:10px;
-}
-
-/* SWITCH */
-
-.switch-bg{
-  width:44px;
-  height:24px;
-
-  position:relative;
-
-  flex-shrink:0;
-
-  border-radius:12px;
-
-  background:#3a1515;
-
-  transition:.3s;
-}
-
-.switch-bg::after{
-  content:"";
-
-  position:absolute;
-
-  width:18px;
-  height:18px;
-
-  left:4px;
-  top:3px;
-
-  border-radius:50%;
-
-  background:#aaa;
-
-  transition:.3s;
-}
-
-.opt-item.active{
-  border-color:#ff3b3b;
-
-  background:rgba(60,10,10,.9);
-
-  box-shadow:
-    0 0 15px rgba(255,0,0,.2);
-}
-
-.opt-item.active .switch-bg{
-  background:#ff1a1a;
-}
-
-.opt-item.active .switch-bg::after{
-  left:22px;
-  background:#fff;
-}
-
-/* INFO */
-
-.info-box{
-  padding:18px;
-
-  text-align:left;
-
-  background:rgba(40,10,10,.6);
-
-  border:
-    1px solid
-    rgba(255,59,59,.2);
-
-  border-radius:18px;
-
-  font-size:12px;
-}
-
-.info-line{
-  margin:0 0 12px;
-
-  padding-bottom:8px;
-
-  border-bottom:
-    1px solid
-    rgba(255,59,59,.2);
-
-  text-transform:uppercase;
-}
-
-.info-line:last-child{
-  margin-bottom:0;
-  border-bottom:0;
-}
-
-.value{
-  float:right;
-  color:#ff4d4d;
-}
-
-/* TOAST */
-
-#status-toast{
-  display:none;
-
-  position:fixed;
-
-  top:10%;
-  left:50%;
-
-  transform:translateX(-50%);
-
-  z-index:100;
-
-  padding:10px 25px;
-
-  white-space:nowrap;
-
-  color:#fff;
-
-  font-size:13px;
-  font-weight:700;
-
-  border-radius:30px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #cc0000,
-      #ff1a1a
-    );
-
-  box-shadow:
-    0 0 20px rgba(255,0,0,.5);
-}
-
-/* FOOTER */
-
-.footer{
-  margin-top:18px;
-
-  color:#888;
-
-  font-size:11px;
-  font-weight:800;
-
-  letter-spacing:2px;
-
-  text-transform:uppercase;
-}
-
-</style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
+  <div class="container">
 
-<div id="status-toast"></div>
+    <div class="logo">🤖</div>
 
+    <h1>Mon WhatsApp Bot</h1>
 
-<div class="container">
+    <p>
 
-<!-- =========================
-     LOGIN
-========================= -->
+      Bienvenue sur ton tableau de bord.
 
-<div id="login-screen">
+      Ton propre bot WhatsApp est en préparation.
 
-  <img
-    class="logo"
-    src="https://i.postimg.cc/Y9GQSM32/5002f61b-dc82-45d3-af07-eff5eb510c04.jpg"
-    alt="ANTIJUDA iOS">
+    </p>
 
-  <div class="title">
-    ANTIJUDA iOS
-  </div>
+    <div class="status">
 
-  <div class="subtitle">
-    ACCESO PROTEGIDO
-  </div>
-
-  <div class="login-box">
-
-    <div class="input-wrapper">
-
-      <i class="fa-solid fa-lock"></i>
-
-      <input
-        id="password"
-        type="password"
-        placeholder="INTRODUCE TU CÓDIGO"
-        autocomplete="off">
+      ● Bot en préparation
 
     </div>
 
-    <button
-      class="btn-action"
-      onclick="verificarCodigo()">
+    <button onclick="alert('Le bot sera bientôt disponible !')">
 
-      <i class="fa-solid fa-key"></i>
-      ACCEDER
+      Mon bot
 
     </button>
 
-    <div
-      id="login-message"
-      class="login-message">
-    </div>
+    <footer>
+
+      © 2026 Mon WhatsApp Bot
+
+    </footer>
 
   </div>
-
-  <div class="footer">
-    ANTIJUDA iOS
-  </div>
-
-</div>
-
-
-<!-- =========================
-     MENU
-========================= -->
-
-<div id="main-panel">
-
-  <span class="simple-title">
-    <i class="fa-brands fa-apple"></i>
-    ANTIJUDA iOS
-  </span>
-
-
-  <div class="tabs">
-
-    <button
-      class="tab-btn active"
-      id="btn-f"
-      onclick="showTab('funciones')">
-
-      <i class="fa-solid fa-sliders"></i>
-      FUNCIONES
-
-    </button>
-
-    <button
-      class="tab-btn"
-      id="btn-i"
-      onclick="showTab('info')">
-
-      <i class="fa-solid fa-circle-info"></i>
-      SOBRE
-
-    </button>
-
-  </div>
-
-
-  <!-- FUNCIONES -->
-
-  <div
-    id="funciones"
-    class="tab-content active">
-
-    <div
-      class="opt-item"
-      onclick="toggleOption(this,'HEADTRICK')">
-
-      <div class="opt-info">
-
-        <b>
-          <i class="fa-solid fa-crosshairs"
-             style="color:#ff4d4d;margin-right:8px;"></i>
-          HEADTRICK 95% HS
-        </b>
-
-        <p>
-          precisión mejorada HS
-        </p>
-
-      </div>
-
-      <div class="switch-bg"></div>
-
-    </div>
-
-
-    <div
-      class="opt-item"
-      onclick="toggleOption(this,'OPTIMIZACIÓN')">
-
-      <div class="opt-info">
-
-        <b>
-          <i class="fa-solid fa-gauge-high"
-             style="color:#ff4d4d;margin-right:8px;"></i>
-          OPTIMIZACIÓN
-        </b>
-
-        <p>
-          rendimiento del sistema
-        </p>
-
-      </div>
-
-      <div class="switch-bg"></div>
-
-    </div>
-
-  </div>
-
-
-  <!-- SOBRE -->
-
-  <div
-    id="info"
-    class="tab-content">
-
-    <div class="info-box">
-
-      <p class="info-line">
-
-        <i class="fa-solid fa-code-branch"></i>
-        VERSIÓN:
-
-        <span class="value">
-          1.0.0
-        </span>
-
-      </p>
-
-      <p class="info-line">
-
-        <i class="fa-solid fa-shield-halved"></i>
-        ESTADO:
-
-        <span class="value">
-          PROTEGIDO
-        </span>
-
-      </p>
-
-      <p class="info-line">
-
-        <i class="fa-solid fa-user"></i>
-        CREADOR:
-
-        <span class="value">
-          ANTIJUDA
-        </span>
-
-      </p>
-
-    </div>
-
-  </div>
-
-
-  <button
-    class="btn-action"
-    id="btnInjetar"
-    onclick="activarDemo()">
-
-    <i class="fa-solid fa-bolt"></i>
-    ACTIVAR HEADTRACKING
-
-  </button>
-
-
-  <div class="footer">
-    <i class="fa-brands fa-apple"></i>
-    ANTIJUDA iOS
-  </div>
-
-</div>
-
-</div>
-
-
-<script>
-
-/* =========================
-   CÓDIGOS DE ACCESO
-========================= */
-
-const codigosValidos = [
-
-  "ANTI-7K29",
-  "IOS-48XQ",
-  "JUDA-93LM",
-  "XITS-61RP"
-
-];
-
-
-/* =========================
-   LOGIN
-========================= */
-
-function verificarCodigo(){
-
-  const input =
-    document.getElementById("password");
-
-  const message =
-    document.getElementById("login-message");
-
-  const btn =
-    document.querySelector(
-      "#login-screen .btn-action"
-    );
-
-  const codigo =
-    input.value.trim().toUpperCase();
-
-
-  if(!codigo){
-
-    message.innerHTML =
-      "⚠️ INTRODUCE UN CÓDIGO";
-
-    return;
-  }
-
-
-  btn.innerHTML =
-    '<span class="spinner"></span> VERIFICANDO...';
-
-  btn.disabled=true;
-
-
-  setTimeout(()=>{
-
-    if(codigosValidos.includes(codigo)){
-
-      message.innerHTML =
-        "✓ ACCESO AUTORIZADO";
-
-      message.style.color =
-        "#ff4d4d";
-
-
-      setTimeout(()=>{
-
-        document
-          .getElementById("login-screen")
-          .style.display="none";
-
-        document
-          .getElementById("main-panel")
-          .style.display="block";
-
-      },700);
-
-    }else{
-
-      message.innerHTML =
-        "✕ CÓDIGO INCORRECTO";
-
-      message.style.color =
-        "#ff5555";
-
-      btn.innerHTML =
-        '<i class="fa-solid fa-key"></i> ACCEDER';
-
-      btn.disabled=false;
-
-    }
-
-  },1000);
-
-}
-
-
-/* ENTER POUR VALIDER */
-
-document
-  .getElementById("password")
-  .addEventListener(
-    "keydown",
-    function(event){
-
-      if(event.key==="Enter"){
-        verificarCodigo();
-      }
-
-    }
-  );
-
-
-/* =========================
-   TABS
-========================= */
-
-function showTab(tab){
-
-  document
-    .getElementById("funciones")
-    .classList.toggle(
-      "active",
-      tab==="funciones"
-    );
-
-  document
-    .getElementById("info")
-    .classList.toggle(
-      "active",
-      tab==="info"
-    );
-
-  document
-    .getElementById("btn-f")
-    .classList.toggle(
-      "active",
-      tab==="funciones"
-    );
-
-  document
-    .getElementById("btn-i")
-    .classList.toggle(
-      "active",
-      tab==="info"
-    );
-
-}
-
-
-/* =========================
-   OPTIONS
-========================= */
-
-async function toggleOption(
-  el,
-  nombre
-){
-
-  const toast =
-    document.getElementById(
-      "status-toast"
-    );
-
-
-  if(!el.classList.contains("active")){
-
-    toast.innerHTML =
-      '<span class="spinner"></span> APLICANDO...';
-
-    toast.style.display =
-      "block";
-
-
-    await new Promise(
-      resolve =>
-        setTimeout(
-          resolve,
-          1200
-        )
-    );
-
-
-    el.classList.add("active");
-
-    toast.innerHTML =
-      '<i class="fa-solid fa-circle-check"></i> APLICADO CON ÉXITO';
-
-  }else{
-
-    el.classList.remove("active");
-
-    toast.innerHTML =
-      '<i class="fa-solid fa-circle-xmark"></i> '+
-      nombre+
-      ' OFF';
-
-    toast.style.display =
-      "block";
-  }
-
-
-  setTimeout(()=>{
-
-    toast.style.display =
-      "none";
-
-  },1500);
-
-}
-
-
-/* =========================
-   BOUTON PRINCIPAL
-========================= */
-
-async function activarDemo(){
-
-  const toast =
-    document.getElementById(
-      "status-toast"
-    );
-
-  const btn =
-    document.getElementById(
-      "btnInjetar"
-    );
-
-
-  toast.innerHTML =
-    '<span class="spinner"></span> ACTIVANDO...';
-
-  toast.style.display =
-    "block";
-
-  btn.style.opacity =
-    ".5";
-
-  btn.style.pointerEvents =
-    "none";
-
-
-  await new Promise(
-    resolve =>
-      setTimeout(
-        resolve,
-        2000
-      )
-  );
-
-
-  toast.innerHTML =
-    '<i class="fa-solid fa-circle-check"></i> ACTIVACIÓN COMPLETADA';
-
-
-  btn.innerHTML =
-    '<i class="fa-solid fa-check"></i> HEADTRACKING ACTIVADO';
-
-
-  btn.style.opacity =
-    "1";
-
-  btn.style.pointerEvents =
-    "auto";
-
-
-  setTimeout(()=>{
-
-    toast.style.display =
-      "none";
-
-  },1500);
-
-}
-
-
-/* =========================
-   PARTICULAS
-========================= */
-
-const canvas =
-  document.getElementById(
-    "particles"
-  );
-
-const ctx =
-  canvas.getContext("2d");
-
-let particles=[];
-
-
-function resize(){
-
-  canvas.width =
-    window.innerWidth;
-
-  canvas.height =
-    window.innerHeight;
-
-}
-
-
-class Particle{
-
-  constructor(){
-
-    this.x =
-      Math.random() *
-      canvas.width;
-
-    this.y =
-      Math.random() *
-      canvas.height;
-
-    this.vx =
-      (Math.random()-.5)*.3;
-
-    this.vy =
-      (Math.random()-.5)*.3;
-
-    this.size =
-      Math.random()*1.5;
-
-  }
-
-
-  update(){
-
-    this.x += this.vx;
-    this.y += this.vy;
-
-
-    if(
-      this.x<0 ||
-      this.x>canvas.width
-    ){
-
-      this.vx *= -1;
-
-    }
-
-
-    if(
-      this.y<0 ||
-      this.y>canvas.height
-    ){
-
-      this.vy *= -1;
-
-    }
-
-  }
-
-
-  draw(){
-
-    ctx.fillStyle =
-      "rgba(255,59,59,.3)";
-
-    ctx.beginPath();
-
-    ctx.arc(
-      this.x,
-      this.y,
-      this.size,
-      0,
-      Math.PI*2
-    );
-
-    ctx.fill();
-
-  }
-
-}
-
-
-function initParticles(){
-
-  particles=[];
-
-  for(
-    let i=0;
-    i<50;
-    i++
-  ){
-
-    particles.push(
-      new Particle()
-    );
-
-  }
-
-}
-
-
-function animate(){
-
-  ctx.clearRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  particles.forEach(p=>{
-
-    p.update();
-    p.draw();
-
-
-    particles.forEach(p2=>{
-
-      const dist =
-        Math.hypot(
-          p.x-p2.x,
-          p.y-p2.y
-        );
-
-
-      if(dist<100){
-
-        ctx.strokeStyle =
-          "rgba(255,59,59,"+
-          ((1-dist/100)*.15)+")";
-
-        ctx.lineWidth=.5;
-
-        ctx.beginPath();
-
-        ctx.moveTo(
-          p.x,
-          p.y
-        );
-
-        ctx.lineTo(
-          p2.x,
-          p2.y
-        );
-
-        ctx.stroke();
-
-      }
-
-    });
-
-  });
-
-
-  requestAnimationFrame(
-    animate
-  );
-
-}
-
-
-resize();
-initParticles();
-animate();
-
-window.addEventListener(
-  "resize",
-  resize
-);
-
-</script>
 
 </body>
+
 </html>
